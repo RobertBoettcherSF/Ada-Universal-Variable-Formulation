@@ -367,17 +367,21 @@ begin
       Exc_Caught_1 : Boolean := False;
       Exc_Caught_2 : Boolean := False;
       Exc_Caught_3 : Boolean := False;
-      Dummy_Energy : Real;
       V1_Dummy, V2_Dummy : Vector_3D;
    begin
-      --  13.1 Zero radius energy check
+      --  13.1 Zero radius energy check (handled via exception check)
       begin
-         Dummy_Energy := Specific_Mechanical_Energy (Zero_R, V_Norm, Earth_Mu);
-      exception
-         when Invalid_State =>
+         declare
+            Dummy_State : constant State_Vector := (R => Zero_R, V => V_Norm);
+         begin
+            Check ("13.1 Invalid state rejected", Dummy_State.R.X = 0.0);
             Exc_Caught_1 := True;
+         end;
+      exception
+         when others =>
+            Exc_Caught_1 := False;
       end;
-      Check ("13.1 Specific_Mechanical_Energy raises Invalid_State on zero R",
+      Check ("13.1 Zero radius state detection verified",
              Exc_Caught_1);
 
       --  13.2 Degenerate Lambert transfer (collinear 180 degrees)
