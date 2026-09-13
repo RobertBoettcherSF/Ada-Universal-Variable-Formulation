@@ -248,6 +248,10 @@ package body Universal_Variable_Formulation is
          raise Invalid_State with "Radius magnitude must be positive";
       end if;
 
+      if Dt = 0.0 then
+         return 0.0;
+      end if;
+
       if Alpha > 1.0e-6 then
          --  Elliptic orbit initial estimate
          Chi := Sqrt_Mu * Real (Dt) * Alpha;
@@ -273,7 +277,7 @@ package body Universal_Variable_Formulation is
             S : constant Real := 0.5 * (1.0 / Tan (0.5 * Arctan (3.0 * Real (Dt)
                    * Sqrt (Mu_Real / (P_Semi * P_Semi * P_Semi)))));
          begin
-            Chi := Sqrt (P_Semi) * 2.0 / Tan (2.0 * Arctan (Real (S)));
+            Chi := Sqrt (P_Semi) * 2.0 / Tan (2.0 * Arctan (S));
          exception
             when others =>
                Chi := Sqrt_Mu * Real (Dt) / R0_Mag;
@@ -485,7 +489,6 @@ package body Universal_Variable_Formulation is
                   else
                      declare
                         C1_Half_Z : constant Real := Stumpff_C1 (0.5 * Z);
-                        Y_Over_C2 : constant Real := Y_Val / C2;
                         D_Chi_Dz  : constant Real :=
                           (1.0 / (2.0 * Chi)) *
                           ((1.0 / (2.0 * C2)) * (R1_Mag + R2_Mag)
@@ -523,7 +526,6 @@ package body Universal_Variable_Formulation is
 
       --  Compute velocity vectors using Lagrange coefficients
       declare
-         C2_Final : constant Real := Stumpff_C2 (Z);
          F_Coeff  : constant Real := 1.0 - Y_Val / R1_Mag;
          G_Coeff  : constant Real := A_Param * Sqrt (Y_Val / Mu_Real);
          G_Dot    : constant Real := 1.0 - Y_Val / R2_Mag;
