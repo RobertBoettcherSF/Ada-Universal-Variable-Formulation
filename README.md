@@ -14,14 +14,19 @@ The Universal Variable Formulation is a unified mathematical framework in astrod
 ## Building
 - Prerequisites: GNAT supporting Ada 2022/2023 (e.g., GNAT FSF 13+, GNAT Community 2021+, or Alire gnat_native).
 - Compilation:
-  make
-  The compiler flags -gnatwa -gnat2022 ensure clean compilation without any warnings.
+```bash
+make
+```
+The compiler flags `-gnatwa -gnat2022` ensure clean compilation without any warnings.
 
 ## Usage
 Run the standalone test suite:
-  make test
+```bash
+make test
+```
 
 Expected output:
+```text
 Running tests...
 === Universal Variable Formulation Test Suite ===
 
@@ -78,7 +83,8 @@ TEST 13 -- Error Handling and Singularities
   PASS -- 13.2 Lambert raises Singularity_Error for collinear 180 deg geometry
   PASS -- 13.3 Propagating for Dt = 0.0 returns unchanged state without error
 
-===  39 passed,  0 failed ===
+=== 39 passed, 0 failed ===
+```
 
 ## Testing
 The test executable tests.adb validates 13 distinct verification criteria across four primary disciplines:
