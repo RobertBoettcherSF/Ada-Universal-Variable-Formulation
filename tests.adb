@@ -384,7 +384,7 @@ begin
       begin
          Solve_Lambert_Universal
            (R1       => R_Norm,
-            R2       => -1.0 * R_Norm,
+            R2       => Real (-1.0) * R_Norm,
             Dt       => 1000.0,
             Mu       => Earth_Mu,
             V1       => V1_Dummy,
