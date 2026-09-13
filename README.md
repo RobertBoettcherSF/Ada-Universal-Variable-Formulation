@@ -1,4 +1,3 @@
-```
 # Universal Variable Formulation in Ada 2023
 
 ## Project Overview
@@ -87,5 +86,3 @@ The test executable tests.adb validates 13 distinct verification criteria across
 2. Dynamic Invariants: Closed-loop orbital period verification, coordinate inversion at pi radians, and time reversibility (t -> t + Delta t -> t).
 3. Boundary Value Solvers: Universal Lambert orbital transfers verified by forward numerical propagation of computed initial velocities to match target terminal coordinates.
 4. Defensive Programming & Edge Cases: Proper raising of Invalid_State, Singularity_Error, and Convergence_Error on physical singularities (zero radius, collinear transfer planes, vanishing derivatives).
-
-```
