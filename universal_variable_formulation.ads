@@ -147,7 +147,7 @@ is
       Mu         : Gravitational_Parameter;
       Tolerance  : Real := 1.0e-10;
       Max_Iter   : Positive := 100) return Universal_Anomaly with
-     Pre    => Magnitude (R0) > 0.0 and Dt /= 0.0,
+     Pre    => Magnitude (R0) > 0.0,
      Global => null;
 
    procedure Propagate_Kepler_Universal
